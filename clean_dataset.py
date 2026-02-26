@@ -1,19 +1,23 @@
 import pandas as pd
 import re
 
-# Load dataset
-df = pd.read_csv("fake_news_data.csv")
+df = pd.read_csv("WELFake_Dataset.csv")
 
 print("Original shape:", df.shape)
 
 df.dropna(inplace=True)
 df.drop_duplicates(inplace=True)
 
-for col in df.columns:
-    if df[col].dtype == "object":
-        df[col] = df[col].str.lower()
-        df[col] = df[col].apply(lambda x: re.sub(r'[^a-zA-Z\s]', '', str(x)))
-        df[col] = df[col].apply(lambda x: re.sub(r'\s+', ' ', x))
+def clean_text(text):
+    text = str(text).lower()
+    text = re.sub(r'http\S+', '', text)  # remove URLs
+    text = re.sub(r'[^a-zA-Z\s]', '', text)
+    text = re.sub(r'\s+', ' ', text)
+    return text.strip()
+
+# Clean only title and text
+df["title"] = df["title"].apply(clean_text)
+df["text"] = df["text"].apply(clean_text)
 
 print("After cleaning shape:", df.shape)
 
