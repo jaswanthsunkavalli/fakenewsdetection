@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fake News Detector</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>📰 News Verifier <span class="badge">Using ML</span></h1>
+            <p>Enter news details to analyze authenticity and risk levels.</p>
+        </header>
+
+        <main class="dashboard">
+
+            <!-- INPUT PANEL -->
+            <section class="input-panel">
+
+                <div class="form-group">
+                    <label>News Headline</label>
+                    <input type="text" id="headline" placeholder="Paste the headline here...">
+                </div>
+
+                <div class="form-group">
+                    <label>Full Article Content</label>
+                    <textarea id="article" rows="8" placeholder="Paste the full news description..."></textarea>
+                </div>
+
+                <button onclick="analyzeNews()" id="analyzeBtn">
+                    Analyze Authenticity
+                </button>
+
+            </section>
+
+
+            <!-- RESULT PANEL -->
+            <section class="result-panel" id="resultArea" style="display: none;">
+
+                <!-- METRICS -->
+                <div class="metrics-grid">
+
+                    <div class="card">
+                        <h3>Verdict</h3>
+                        <p id="verdict" class="verdict-text">--</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Risk Level</h3>
+                        <p id="riskLevel" class="risk-badge">--</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Model Accuracy</h3>
+                        <p id="accuracyDisplay" class="accuracy-text">--</p>
+                    </div>
+
+                </div>
+
+                <!-- CHART -->
+                <div class="chart-container">
+                    <canvas id="predictionChart"></canvas>
+                </div>
+
+                <!-- SUMMARY -->
+                <div class="details-box">
+                    <h4>Analysis Summary</h4>
+                    <p><strong>Headline:</strong> <span id="hSummary"></span></p>
+                    <p><strong>Article:</strong> <span id="aSummary"></span></p>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
