@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load dataset
-df = pd.read_csv("fake_news_data.csv")
+df = pd.read_csv("WELFake_Dataset.csv")
 
 # Drop rows where text or label is empty
 df = df.dropna(subset=['text','label']).reset_index(drop=True)
